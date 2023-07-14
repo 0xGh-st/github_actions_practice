@@ -18,13 +18,11 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-        
-      - name: Save output to file
-        run: echo "${{ steps.run-python.outputs.stdout }}" > output.txt
+        id: python-version
 
-      - name: Upload artifact
+      - name: Save Python version artifact
         uses: actions/upload-artifact@v2
         with:
-          name: python-output
-          path: output.txt
+          name: python-version
+          path: ${{ github.workspace }}/python-version.txt
      
