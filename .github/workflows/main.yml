@@ -20,11 +20,11 @@ jobs:
         id: python-version
         run: |
           python -c "import sys; print(sys.version)"
-          echo "::set-output name=python-version::$(python -c 'import sys; print(sys.version)')" 
+          echo "::set-output name=python-version::$(python -c 'import sys; print(sys.version)')"
 
       - name: Save Python version artifact
         uses: actions/upload-artifact@v2
         with:
-          name: python-version
-          path: ${{ github.workspace }}/python-version.txt
-     
+          name: python-version-${{ matrix.python-version }}
+          path: ${{ github.workspace }}/python-version-${{ matrix.python-version }}.txt
+        
