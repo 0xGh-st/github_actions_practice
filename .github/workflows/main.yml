@@ -23,8 +23,9 @@ jobs:
           echo "::set-output name=python-version::$(python -c 'import sys; print(sys.version)')"
 
       - name: Save Python version artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: python-version-${{ matrix.python-version }}
-          path: ${{ github.workspace }}/python-version-${{ matrix.python-version }}.txt
+        run: |
+          echo "${{ steps.python-version.outputs.python-version }}" > python-version-${{ matrix.python-version }}.txt
+          artifacts:
+          paths:
+            - python-version-${{ matrix.python-version }}.txt
         
